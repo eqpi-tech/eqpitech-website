@@ -61,8 +61,8 @@ export async function handler(event) {
     }
   }
 
-  const to = process.env.SEND_EMAIL_TO || 'comercial@eqpitech.com.br'
-  const from = process.env.SEND_EMAIL_FROM || 'noreply@eqpitech.com.br'
+  const to = (process.env.SEND_EMAIL_TO || 'comercial@eqpitech.com.br').trim()
+  const fromEmail = (process.env.SEND_EMAIL_FROM || 'noreply@eqpitech.com.br').trim()
   const apiKey = process.env.RESEND_API_KEY
 
   if (!apiKey) {
@@ -107,6 +107,8 @@ export async function handler(event) {
     </div>
   `
 
+  console.log('[contact] sending from:', `EQPI Tech <${fromEmail}>`, '→ to:', to)
+
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -115,9 +117,9 @@ export async function handler(event) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: `EQPI Tech Site <${from}>`,
+        from: `EQPI Tech <${fromEmail}>`,
         to: [to],
-        reply_to: `${name.trim()} <${email.trim()}>`,
+        reply_to: email.trim(),
         subject,
         text: textBody,
         html: htmlBody,

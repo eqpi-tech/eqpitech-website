@@ -1,0 +1,174 @@
+/* ── Design Tokens ──────────────────────────────────────── */
+:root {
+  /* Brand palette */
+  --navy-deep:    #0F1128;
+  --navy:         #1B1F3B;
+  --navy-mid:     #2E3192;
+  --navy-light:   #3D4499;
+  --orange:       #F47E2F;
+  --orange-light: #FF9A4D;
+  --teal:         #00BFA5;
+  --teal-dark:    #008F7A;
+  --white:        #FFFFFF;
+  --light:        #F4F6FA;
+  --light-mid:    #E8EBF4;
+  --grey:         #9B9B9B;
+  --grey-dark:    #6B7280;
+  --text-on-dark: rgba(255, 255, 255, 0.72);
+
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  /* Spacing */
+  --section-y: 96px;
+  --section-y-sm: 64px;
+  --container:  1200px;
+  --container-pad: clamp(1.25rem, 5vw, 3rem);
+
+  /* Radius */
+  --r-sm:  6px;
+  --r-md:  12px;
+  --r-lg:  20px;
+  --r-xl:  32px;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-med:  0.32s;
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--navy);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ── Utility classes ────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+.section-label {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--navy);
+}
+
+.section-title--light {
+  color: var(--white);
+}
+
+.section-desc {
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  color: var(--grey-dark);
+  max-width: 560px;
+  margin-top: 16px;
+}
+
+.section-desc--light {
+  color: var(--text-on-dark);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--r-sm);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  transition: all var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: var(--orange-light);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: var(--white);
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.6);
+}
+
+.btn-outline-dark {
+  border: 1.5px solid var(--navy-mid);
+  color: var(--navy);
+}
+.btn-outline-dark:hover {
+  background: var(--navy-mid);
+  color: var(--white);
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp var(--dur-med) var(--ease) forwards;
+}
+
+/* Section spacing */
+.section {
+  padding: var(--section-y) 0;
+}
+.section--sm {
+  padding: var(--section-y-sm) 0;
+}
+
+/* Scrollbar (subtle) */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--light-mid); border-radius: 3px; }

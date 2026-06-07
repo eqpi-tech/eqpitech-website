@@ -1,0 +1,78 @@
+.about {
+  background: var(--white);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.title {
+  margin-bottom: 0;
+}
+
+.desc {
+  max-width: none;
+}
+
+.cta {
+  margin-top: 32px;
+}
+
+/* Pillars */
+.pillarsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: var(--r-md);
+  border-left: 3px solid transparent;
+  background: var(--light);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.pillar:hover {
+  transform: translateX(4px);
+}
+
+.pillar--navy  { border-left-color: var(--navy-mid); }
+.pillar--orange { border-left-color: var(--orange); }
+.pillar--teal  { border-left-color: var(--teal); }
+
+.pillarIcon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.5;
+}
+
+.pillarTitle {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.pillarDesc {
+  font-size: 14px;
+  color: var(--grey-dark);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}

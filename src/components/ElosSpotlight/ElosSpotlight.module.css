@@ -1,0 +1,183 @@
+.spotlight {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+
+/* Left side */
+.left {
+  background: var(--navy-deep);
+  display: flex;
+  align-items: center;
+  padding: var(--section-y) var(--container-pad);
+}
+
+.leftInner {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  margin-bottom: 4px;
+}
+
+.tagline {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  color: var(--text-on-dark);
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.differentials {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.diff {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.diffBar {
+  width: 3px;
+  background: var(--orange);
+  border-radius: 2px;
+  min-height: 40px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.diffTitle {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.diffDesc {
+  font-size: 13.5px;
+  color: var(--text-on-dark);
+  line-height: 1.6;
+}
+
+/* Right side */
+.right {
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  padding: var(--section-y) var(--container-pad);
+}
+
+.rightInner {
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.rightLabel {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 28px;
+}
+
+/* Journey steps */
+.journey {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 28px;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.stepNum {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  min-width: 28px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.stepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stepLabel {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.stepDesc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+}
+
+.stepConnector {
+  position: absolute;
+  left: 13px;
+  top: 28px;
+  width: 1.5px;
+  height: calc(100% - 28px);
+  background: rgba(255,255,255,0.25);
+}
+
+/* Score note */
+.scoreNote {
+  margin-top: 28px;
+  padding: 16px 20px;
+  background: rgba(0,0,0,0.12);
+  border-radius: var(--r-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scoreTitle {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.scoreDesc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .spotlight {
+    grid-template-columns: 1fr;
+  }
+
+  .left, .right {
+    padding: var(--section-y-sm) var(--container-pad);
+  }
+}

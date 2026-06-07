@@ -1,0 +1,125 @@
+.footer {
+  background: var(--navy-deep);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
+  padding: 60px 0 48px;
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logoImg {
+  height: 40px;
+  width: auto;
+}
+
+.tagline {
+  font-size: 13.5px;
+  color: var(--text-on-dark);
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.social {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--orange);
+  transition: color var(--dur-fast);
+  align-self: flex-start;
+}
+.social:hover { color: var(--orange-light); }
+
+/* Columns */
+.col {}
+
+.colTitle {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+  margin-bottom: 16px;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navLink {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  transition: color var(--dur-fast);
+}
+.navLink:hover { color: var(--white); }
+
+/* Contact */
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contactItem {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  transition: color var(--dur-fast);
+}
+.contactItem:hover { color: var(--white); }
+
+.address {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+/* Bottom bar */
+.bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .top {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+
+  .brand { grid-column: auto; }
+
+  .bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}

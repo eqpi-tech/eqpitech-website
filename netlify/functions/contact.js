@@ -8,28 +8,38 @@
  *   SEND_EMAIL_FROM — "noreply@eqpitech.com.br"
  */
 
-const ALLOWED_ORIGIN = 'https://eqpitech.com.br'
+const ALLOWED_ORIGINS = [
+  'https://eqpitech.com.br',
+  'https://www.eqpitech.com.br',
+  'https://eqpi-site.netlify.app',
+]
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
+function corsHeaders(event) {
+  const origin = event.headers?.origin || ''
+  const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]
+  return {
+    'Access-Control-Allow-Origin': allowed,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  }
 }
 
 export async function handler(event) {
+  const cors = corsHeaders(event)
+
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: CORS_HEADERS, body: '' }
+    return { statusCode: 204, headers: cors, body: '' }
   }
 
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers: CORS_HEADERS, body: 'Method not allowed' }
+    return { statusCode: 405, headers: cors, body: 'Method not allowed' }
   }
 
   let body
   try {
     body = JSON.parse(event.body)
   } catch {
-    return { statusCode: 400, headers: CORS_HEADERS, body: JSON.stringify({ error: 'Invalid JSON' }) }
+    return { statusCode: 400, headers: cors, body: JSON.stringify({ error: 'Invalid JSON' }) }
   }
 
   const { name, company, email, phone, message } = body
@@ -37,7 +47,7 @@ export async function handler(event) {
   if (!name?.trim() || !email?.trim() || !message?.trim()) {
     return {
       statusCode: 422,
-      headers: CORS_HEADERS,
+      headers: cors,
       body: JSON.stringify({ error: 'Nome, e-mail e mensagem são obrigatórios.' }),
     }
   }
@@ -46,7 +56,7 @@ export async function handler(event) {
   if (!basicEmailRegex.test(email)) {
     return {
       statusCode: 422,
-      headers: CORS_HEADERS,
+      headers: cors,
       body: JSON.stringify({ error: 'E-mail inválido.' }),
     }
   }
@@ -59,7 +69,7 @@ export async function handler(event) {
     console.error('[contact] RESEND_API_KEY não configurada')
     return {
       statusCode: 500,
-      headers: CORS_HEADERS,
+      headers: cors,
       body: JSON.stringify({ error: 'Configuração de e-mail ausente.' }),
     }
   }
@@ -119,21 +129,21 @@ export async function handler(event) {
       console.error('[contact] Resend error:', response.status, errText)
       return {
         statusCode: 502,
-        headers: CORS_HEADERS,
+        headers: cors,
         body: JSON.stringify({ error: 'Falha ao enviar e-mail. Tente novamente.' }),
       }
     }
 
     return {
       statusCode: 200,
-      headers: CORS_HEADERS,
+      headers: cors,
       body: JSON.stringify({ ok: true }),
     }
   } catch (err) {
     console.error('[contact] Unexpected error:', err)
     return {
       statusCode: 500,
-      headers: CORS_HEADERS,
+      headers: cors,
       body: JSON.stringify({ error: 'Erro interno. Tente novamente.' }),
     }
   }

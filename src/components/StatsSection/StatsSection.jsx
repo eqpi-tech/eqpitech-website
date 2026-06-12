@@ -54,7 +54,7 @@ const STATS = [
   },
   {
     number: 7.2,
-    suffix: 'bi',
+    suffix: 'mi',
     decimals: 1,
     label: 'Documentos analisados',
     detail: 'desde o início das operações em 2014',

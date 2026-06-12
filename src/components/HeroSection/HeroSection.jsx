@@ -3,7 +3,7 @@ import styles from './HeroSection.module.css'
 
 const STATS = [
   { value: '60k+', label: 'Fornecedores ativos' },
-  { value: '7,2bi', label: 'Documentos analisados' },
+  { value: '7,2mi', label: 'Documentos analisados' },
   { value: '31%',   label: 'Redução de riscos' },
   { value: '12+',   label: 'Anos de experiência' },
 ]
